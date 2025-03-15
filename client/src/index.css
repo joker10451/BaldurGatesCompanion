@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 10%;
+    --foreground: 30 33% 80%;
+    
+    --card: 0 0% 13%;
+    --card-foreground: 30 33% 80%;
+    
+    --popover: 0 0% 13%;
+    --popover-foreground: 30 33% 80%;
+    
+    --primary: 0 100% 27.1%;
+    --primary-foreground: 30 33% 80%;
+    
+    --secondary: 25 43% 16%;
+    --secondary-foreground: 30 33% 80%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 30 33% 60%;
+    
+    --accent: 30 43% 16%;
+    --accent-foreground: 30 33% 80%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 30 33% 90%;
+    
+    --border: 25 43% 16%;
+    --input: 25 43% 16%;
+    --ring: 51 100% 41%;
+    
+    --radius: 0.5rem;
+
+    /* Chart colors */
+    --chart-1: 51 100% 41%;
+    --chart-2: 0 100% 27.1%;
+    --chart-3: 25 43% 16%;
+    --chart-4: 0 0% 20%;
+    --chart-5: 0 0% 30%;
+  }
+
+  * {
+    @apply border-border;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--secondary)) hsl(var(--muted));
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    background-color: hsl(var(--background));
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233a2718' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--secondary));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer components {
+  /* Custom text and heading styles */
+  .text-gold {
+    @apply text-[#FFD700];
+  }
+  
+  .font-heading {
+    font-family: 'EB Garamond', serif;
+  }
+  
+  .font-accent {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .fantasy-card {
+    @apply bg-card border border-secondary rounded-lg shadow-lg overflow-hidden;
+  }
+  
+  /* Tooltip component */
+  .tooltip {
+    @apply relative inline-block border-b border-dotted border-foreground/60;
+  }
+
+  .tooltip .tooltip-text {
+    @apply invisible bg-secondary text-foreground text-center p-2 rounded-md absolute z-10 w-48 -bottom-10 left-1/2 -ml-24 opacity-0 transition-opacity duration-300 border border-primary/50;
+  }
+
+  .tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+  }
+  
+  /* Badge component */
+  .fantasy-badge {
+    @apply bg-primary/20 border border-primary/50 text-gold px-2 py-1 text-xs font-accent rounded-full;
+  }
+  
+  /* Tag component */
+  .fantasy-tag {
+    @apply px-2 py-1 bg-muted rounded-md text-xs;
+  }
+}
