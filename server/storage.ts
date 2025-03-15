@@ -322,143 +322,143 @@ export class MemStorage implements IStorage {
     });
 
     this.seedGuide({
-      title: "Battle Master Fighter Guide",
+      title: "Руководство по Мастеру Боя",
       slug: "battle-master-fighter-guide",
-      excerpt: "Master combat maneuvers with the Battle Master. Learn the best tactics and builds.",
+      excerpt: "Освойте боевые приемы с Мастером Боя. Изучите лучшие тактики и сборки.",
       content: `
-# Battle Master Fighter Guide
+# Руководство по Мастеру Боя
 
-The Battle Master is a fighter subclass that focuses on combat maneuvers. These maneuvers allow you to control the battlefield, deal extra damage, and support your allies.
+Мастер Боя - это подкласс воина, который фокусируется на боевых приемах. Эти приемы позволяют вам контролировать поле боя, наносить дополнительный урон и поддерживать своих союзников.
 
-## Key Features
+## Ключевые особенности
 
-- **Combat Superiority**: You gain a pool of superiority dice that you can spend to fuel various maneuvers.
-- **Maneuvers**: You learn three maneuvers at 3rd level, with more at higher levels.
-- **Know Your Enemy**: Starting at 7th level, you can study a creature to gain information about its capabilities.
+- **Боевое превосходство**: Вы получаете запас кубиков превосходства, которые можно использовать для различных приемов.
+- **Приемы**: Вы изучаете три приема на 3-м уровне, с возможностью изучения новых на более высоких уровнях.
+- **Знай своего врага**: Начиная с 7-го уровня, вы можете изучать существо, чтобы получить информацию о его возможностях.
 
-## Best Maneuvers
+## Лучшие приемы
 
-1. **Menacing Attack**: This maneuver can frighten enemies, preventing them from moving closer to you.
-2. **Trip Attack**: Knock enemies prone to give melee allies advantage on attacks.
-3. **Riposte**: Counter-attack when an enemy misses you.
-4. **Precision Attack**: Add to your attack roll when you need it most.
+1. **Пугающая атака**: Этот прием может испугать врагов, не позволяя им приближаться к вам.
+2. **Сбивающая атака**: Сбивает врагов с ног, давая союзникам ближнего боя преимущество при атаках.
+3. **Ответный удар**: Контратака, когда враг промахивается по вам.
+4. **Точная атака**: Добавляет бонус к броску атаки, когда это наиболее необходимо.
 
-## Recommended Builds
+## Рекомендуемые сборки
 
-### Battlefield Controller
-Focus on maneuvers that control enemy movement and positioning. Use a shield and one-handed weapon for better survivability.
+### Контроль поля боя
+Сосредоточьтесь на приемах, которые контролируют передвижение и позиционирование врагов. Используйте щит и одноручное оружие для лучшей выживаемости.
 
-### Damage Dealer
-Focus on maneuvers that add damage and use a two-handed weapon for maximum damage output.
+### Наноситель урона
+Сосредоточьтесь на приемах, которые добавляют урон, и используйте двуручное оружие для максимальной эффективности.
 
-## Tips and Tricks
+## Советы и хитрости
 
-- Save your superiority dice for critical moments.
-- Coordinate with your party for maximum effect.
-- Position yourself to affect multiple enemies with your maneuvers.
+- Берегите кубики превосходства для критических моментов.
+- Координируйте свои действия с группой для максимального эффекта.
+- Располагайтесь так, чтобы влиять на нескольких противников вашими приемами.
       `,
       categoryId: fighterCategory.id,
       featuredImage: "https://images.unsplash.com/photo-1612870946687-066929736e99?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      tags: ["Fighter", "Battle Master", "Combat Maneuvers", "Tactics"],
-      patch: "Patch 5"
+      tags: ["Воин", "Мастер Боя", "Боевые приемы", "Тактика"],
+      patch: "Патч 5"
     });
 
     this.seedGuide({
-      title: "Eldritch Knight Guide",
+      title: "Руководство по Мистическому Рыцарю",
       slug: "eldritch-knight-guide",
-      excerpt: "Combine fighter combat abilities with wizard spells for a devastating hybrid.",
+      excerpt: "Объедините боевые способности воина с заклинаниями волшебника для сокрушительного гибрида.",
       content: `
-# Eldritch Knight Guide
+# Руководство по Мистическому Рыцарю
 
-The Eldritch Knight is a fighter subclass that combines martial prowess with arcane magic. You gain access to wizard spells, primarily from the Abjuration and Evocation schools.
+Мистический Рыцарь — это подкласс воина, который сочетает боевое мастерство с тайной магией. Вы получаете доступ к заклинаниям волшебника, преимущественно из школ Ограждения и Воплощения.
 
-## Key Features
+## Ключевые особенности
 
-- **Spellcasting**: You can cast wizard spells, primarily from the Abjuration and Evocation schools.
-- **Weapon Bond**: You can bond with up to two weapons, allowing you to summon them to your hand as a bonus action.
-- **War Magic**: Starting at 7th level, you can cast a cantrip and make a weapon attack as a bonus action.
+- **Колдовство**: Вы можете использовать заклинания волшебника, преимущественно из школ Ограждения и Воплощения.
+- **Связь с оружием**: Вы можете связаться с двумя видами оружия, позволяя призывать их в руку бонусным действием.
+- **Боевая магия**: Начиная с 7-го уровня, вы можете сотворить заговор и совершить атаку оружием бонусным действием.
 
-## Recommended Spells
+## Рекомендуемые заклинания
 
-### Cantrips
-- **Booming Blade**: Great for controlling enemy movement.
-- **Green-Flame Blade**: Good for dealing with groups of enemies.
-- **Blade Ward**: Reduce incoming damage when needed.
+### Заговоры
+- **Гремящий клинок**: Отлично подходит для контроля движения противника.
+- **Клинок зеленого пламени**: Хорош для борьбы с группами противников.
+- **Защита клинка**: Снижает получаемый урон при необходимости.
 
-### 1st Level
-- **Shield**: Boost your AC when you need it most.
-- **Absorb Elements**: Reduce elemental damage and add it to your next attack.
-- **Magic Missile**: Guaranteed damage that doesn't require an attack roll.
+### 1-й уровень
+- **Щит**: Повышает вашу КД, когда это особенно необходимо.
+- **Поглощение стихий**: Уменьшает стихийный урон и добавляет его к вашей следующей атаке.
+- **Волшебная стрела**: Гарантированный урон, не требующий броска атаки.
 
-## Ability Score Priorities
+## Приоритеты характеристик
 
-1. **Strength/Dexterity**: Still your primary stat for attacks and damage.
-2. **Intelligence**: Powers your spells, but can be secondary.
-3. **Constitution**: Important for concentration checks and hit points.
+1. **Сила/Ловкость**: По-прежнему ваша основная характеристика для атак и урона.
+2. **Интеллект**: Усиливает ваши заклинания, но может быть второстепенной.
+3. **Телосложение**: Важно для проверок концентрации и очков здоровья.
 
-## Tips and Tricks
+## Советы и хитрости
 
-- Use your spells to supplement your combat abilities, not replace them.
-- Focus on spells that don't rely heavily on your Intelligence score.
-- Use War Magic to cast a cantrip and then make a weapon attack.
+- Используйте ваши заклинания для дополнения боевых способностей, а не для их замены.
+- Сосредоточьтесь на заклинаниях, которые не сильно зависят от показателя Интеллекта.
+- Используйте Боевую магию, чтобы сотворить заговор, а затем совершить атаку оружием.
       `,
       categoryId: fighterCategory.id,
       featuredImage: "https://images.unsplash.com/photo-1594380404522-8e7e41d63fa4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      tags: ["Fighter", "Eldritch Knight", "Spellcasting", "Magic"],
-      patch: "Patch 5"
+      tags: ["Воин", "Мистический Рыцарь", "Колдовство", "Магия"],
+      patch: "Патч 5"
     });
 
     this.seedGuide({
-      title: "Best Fighter Weapons in BG3",
+      title: "Лучшее оружие для Воина в BG3",
       slug: "best-fighter-weapons-bg3",
-      excerpt: "From legendary swords to enchanted hammers, find the best weapons for your Fighter.",
+      excerpt: "От легендарных мечей до зачарованных молотов, найдите лучшее оружие для вашего Воина.",
       content: `
-# Best Fighter Weapons in Baldur's Gate 3
+# Лучшее оружие для Воина в Baldur's Gate 3
 
-This guide covers the most powerful and effective weapons for Fighters in Baldur's Gate 3, organized by weapon type and where to find them.
+Это руководство охватывает самое мощное и эффективное оружие для Воинов в Baldur's Gate 3, организованное по типам и местам, где их можно найти.
 
-## One-Handed Weapons
+## Одноручное оружие
 
-### Swords
-1. **The Watcher**: A +1 longsword that grants advantage on perception checks. Found in the Blighted Village.
-2. **Bloodthirst**: This +2 shortsword has a chance to deal extra necrotic damage. Looted from a certain boss in Act 2.
+### Мечи
+1. **Страж**: Длинный меч +1, который дает преимущество при проверках восприятия. Можно найти в Заброшенной деревне.
+2. **Кровожадность**: Этот короткий меч +2 имеет шанс нанести дополнительный некротический урон. Добывается с определенного босса в Акте 2.
 
-### Axes
-1. **Axe of Mielikki**: This handaxe grants extra poison damage and can be thrown. Found in a hidden chest in the Emerald Grove.
+### Топоры
+1. **Топор Миелики**: Этот ручной топор наносит дополнительный урон ядом и может быть брошен. Находится в спрятанном сундуке в Изумрудной роще.
 
-## Two-Handed Weapons
+## Двуручное оружие
 
-### Greatswords
-1. **Faithbreaker**: A +2 greatsword that deals extra damage to religious targets. Found in the Underdark.
-2. **Sword of Justice**: This greatsword grants advantage against undead and fiends. Reward for completing a specific quest in Act 2.
+### Двуручные мечи
+1. **Разрушитель веры**: Двуручный меч +2, который наносит дополнительный урон религиозным целям. Находится в Подземье.
+2. **Меч правосудия**: Этот двуручный меч дает преимущество против нежити и демонов. Награда за выполнение определенного задания в Акте 2.
 
-### Polearms
-1. **Spear of Night**: A +1 halberd that grants darkvision. Found in a cave in the Underdark.
+### Древковое оружие
+1. **Копье ночи**: Алебарда +1, которая дает темное зрение. Находится в пещере в Подземье.
 
-## Ranged Weapons
+## Дальнобойное оружие
 
-### Bows
-1. **Longbow of the Seldarine**: This +2 longbow grants extra radiant damage. Rare drop from certain enemies in Act 3.
+### Луки
+1. **Длинный лук Селдарина**: Этот длинный лук +2 наносит дополнительный урон излучением. Редкий трофей с определенных противников в Акте 3.
 
-## Unique Weapons
+## Уникальное оружие
 
-1. **Hellrider's Pride**: A versatile weapon that changes type based on your chosen fighting style. Complete the Hellrider questline to obtain.
+1. **Гордость Адского всадника**: Универсальное оружие, которое меняет тип в зависимости от выбранного боевого стиля. Завершите квестовую линию Адского всадника, чтобы получить его.
 
-## Best Weapons By Build
+## Лучшее оружие по сборкам
 
-### Tank Build
-- **Shield of the Emperor** + **The Watcher**: Great defensive combination with good damage.
+### Сборка Танка
+- **Щит Императора** + **Страж**: Отличная защитная комбинация с хорошим уроном.
 
-### Two-Handed Build
-- **Faithbreaker**: High damage output with useful effects against certain enemies.
+### Сборка с двуручным оружием
+- **Разрушитель веры**: Высокий выходной урон с полезными эффектами против определенных противников.
 
-### Ranged Build
-- **Longbow of the Seldarine**: Excellent damage and range with bonus radiant damage.
+### Сборка дальнего боя
+- **Длинный лук Селдарина**: Отличный урон и дальность с бонусным уроном излучением.
       `,
       categoryId: fighterCategory.id,
       featuredImage: "https://images.unsplash.com/photo-1586788224331-947f68671cf1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      tags: ["Fighter", "Weapons", "Equipment", "Loot"],
-      patch: "Patch 5"
+      tags: ["Воин", "Оружие", "Снаряжение", "Добыча"],
+      patch: "Патч 5"
     });
 
     // Tips
