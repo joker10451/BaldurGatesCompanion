@@ -8,7 +8,7 @@ interface RelatedGuidesProps {
 
 const RelatedGuides: React.FC<RelatedGuidesProps> = ({ 
   guides,
-  title = 'Related Guides' 
+  title = 'Похожие руководства' 
 }) => {
   if (!guides || guides.length === 0) {
     return null;

@@ -21,7 +21,7 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
     queryKey: [`/api/guides/${guideId}/tips`],
     queryFn: async () => {
       const response = await fetch(`/api/guides/${guideId}/tips`);
-      if (!response.ok) throw new Error('Failed to fetch tips');
+      if (!response.ok) throw new Error('Не удалось загрузить советы');
       return response.json();
     },
   });
@@ -35,19 +35,19 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
       queryClient.invalidateQueries({ queryKey: [`/api/guides/${guideId}/tips`] });
       setContent('');
       toast({
-        title: 'Success',
-        description: 'Your tip has been submitted.',
+        title: 'Успех',
+        description: 'Ваш совет отправлен.',
       });
       // Save author name for future use
       localStorage.setItem('bg3guide_author', author);
     },
     onError: (error) => {
       toast({
-        title: 'Error',
-        description: 'Failed to submit your tip. Please try again.',
+        title: 'Ошибка',
+        description: 'Не удалось отправить ваш совет. Пожалуйста, попробуйте снова.',
         variant: 'destructive',
       });
-      console.error('Error submitting tip:', error);
+      console.error('Ошибка при отправке совета:', error);
     },
   });
 
@@ -69,8 +69,8 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
     
     if (!content.trim()) {
       toast({
-        title: 'Error',
-        description: 'Please enter a tip before submitting.',
+        title: 'Ошибка',
+        description: 'Пожалуйста, введите совет перед отправкой.',
         variant: 'destructive',
       });
       return;
@@ -78,8 +78,8 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
     
     if (!author.trim()) {
       toast({
-        title: 'Error',
-        description: 'Please enter your name before submitting.',
+        title: 'Ошибка',
+        description: 'Пожалуйста, введите ваше имя перед отправкой.',
         variant: 'destructive',
       });
       return;
@@ -97,8 +97,8 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
     const helpfulTips = JSON.parse(localStorage.getItem('bg3guide_helpful_tips') || '[]');
     if (helpfulTips.includes(tipId)) {
       toast({
-        title: 'Already marked as helpful',
-        description: 'You have already marked this tip as helpful.',
+        title: 'Уже отмечено как полезное',
+        description: 'Вы уже отметили этот совет как полезный.',
       });
       return;
     }
@@ -114,7 +114,7 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
   return (
     <div className="fantasy-card">
       <div className="border-b border-secondary px-6 py-4">
-        <h2 className="font-heading text-xl text-gold">Community Tips & Tricks</h2>
+        <h2 className="font-heading text-xl text-gold">Советы сообщества</h2>
       </div>
       <div className="p-6">
         <div className="space-y-5">
@@ -153,13 +153,13 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                         </svg>
-                        Helpful ({tip.helpfulCount})
+                        Полезно ({tip.helpfulCount})
                       </button>
                       <button className="flex items-center hover:text-gold transition-colors duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        Report
+                        Пожаловаться
                       </button>
                     </div>
                   </div>
@@ -172,24 +172,24 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
                     className="px-4 py-2 border border-gold/50 rounded-md text-gold hover:bg-gold/10 transition-colors duration-200"
                     onClick={() => setShowLoadMore(false)}
                   >
-                    Load More Tips
+                    Загрузить больше советов
                   </button>
                 </div>
               )}
             </>
           ) : (
             <div className="text-center text-foreground/60 py-4">
-              No tips yet. Be the first to share your knowledge!
+              Пока нет советов. Будьте первым, кто поделится своими знаниями!
             </div>
           )}
           
           <div className="mt-8 border-t border-secondary pt-6">
-            <h3 className="font-heading text-lg text-gold mb-3">Share Your Own Tip</h3>
+            <h3 className="font-heading text-lg text-gold mb-3">Поделитесь своим советом</h3>
             <form onSubmit={handleSubmitTip}>
               <div className="mb-3">
                 <input
                   type="text"
-                  placeholder="Your name"
+                  placeholder="Ваше имя"
                   className="w-full bg-background border border-secondary rounded-md p-3 text-foreground focus:outline-none focus:ring-1 focus:ring-gold"
                   value={author}
                   onChange={(e) => setAuthor(e.target.value)}
@@ -198,7 +198,7 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
               </div>
               <textarea 
                 className="w-full bg-background border border-secondary rounded-md p-3 text-foreground resize-y focus:outline-none focus:ring-1 focus:ring-gold min-h-[100px]"
-                placeholder="Share your knowledge with other players..."
+                placeholder="Поделитесь своими знаниями с другими игроками..."
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 required
@@ -209,7 +209,7 @@ const CommunityTips: React.FC<CommunityTipsProps> = ({ guideId }) => {
                   className="px-4 py-2 bg-primary text-foreground rounded-md hover:bg-primary/80 transition-colors duration-200"
                   disabled={submitTipMutation.isPending}
                 >
-                  {submitTipMutation.isPending ? 'Submitting...' : 'Submit Tip'}
+                  {submitTipMutation.isPending ? 'Отправка...' : 'Отправить совет'}
                 </button>
               </div>
             </form>
