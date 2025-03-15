@@ -32,7 +32,7 @@ const SearchBar = () => {
     queryFn: async () => {
       if (debouncedSearchTerm.length < 2) return [];
       const response = await fetch(`/api/guides/search?q=${encodeURIComponent(debouncedSearchTerm)}`);
-      if (!response.ok) throw new Error('Search failed');
+      if (!response.ok) throw new Error('Поиск не удался');
       return response.json();
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
@@ -67,7 +67,7 @@ const SearchBar = () => {
             value={searchTerm}
             onChange={handleSearch}
             onFocus={() => setIsOpen(searchTerm.length >= 2)}
-            placeholder="Search guides..." 
+            placeholder="Поиск руководств..." 
             className="w-full bg-muted border border-secondary rounded-md py-2 px-4 text-foreground focus:outline-none focus:ring-1 focus:ring-gold"
           />
           <button 
@@ -90,7 +90,7 @@ const SearchBar = () => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Searching...
+              Поиск...
             </div>
           ) : searchResults && searchResults.length > 0 ? (
             <ul>
@@ -110,7 +110,7 @@ const SearchBar = () => {
             </ul>
           ) : searchTerm.length >= 2 ? (
             <div className="p-3 text-center text-foreground/70">
-              No results found for "{searchTerm}"
+              Ничего не найдено по запросу "{searchTerm}"
             </div>
           ) : null}
         </div>

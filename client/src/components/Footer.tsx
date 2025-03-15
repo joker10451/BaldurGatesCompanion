@@ -11,27 +11,27 @@ const Footer = () => {
                 <span className="font-accent text-lg text-foreground font-bold">BG3</span>
               </div>
               <div>
-                <h2 className="text-xl font-heading font-bold text-gold">BG3 Guide</h2>
-                <p className="text-xs text-foreground/60">Your companion for Baldur's Gate 3</p>
+                <h2 className="text-xl font-heading font-bold text-gold">БГ3 Гид</h2>
+                <p className="text-xs text-foreground/60">Ваш спутник в мире Baldur's Gate 3</p>
               </div>
             </div>
           </div>
           
           <div className="flex flex-wrap justify-center mb-6 md:mb-0">
-            <Link href="/categories/classes">
-              <a className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">Classes</a>
+            <Link href="/categories/classes" className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">
+              Классы
             </Link>
-            <Link href="/categories/companions">
-              <a className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">Companions</a>
+            <Link href="/categories/companions" className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">
+              Компаньоны
             </Link>
-            <Link href="/categories/quests">
-              <a className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">Quests</a>
+            <Link href="/categories/quests" className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">
+              Квесты
             </Link>
-            <Link href="/categories/items-equipment">
-              <a className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">Items</a>
+            <Link href="/categories/items-equipment" className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">
+              Предметы
             </Link>
-            <Link href="/categories/mechanics">
-              <a className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">Mechanics</a>
+            <Link href="/categories/mechanics" className="px-4 py-2 text-foreground/80 hover:text-gold transition-colors duration-200">
+              Механики
             </Link>
           </div>
           
@@ -54,7 +54,7 @@ const Footer = () => {
               </a>
             </div>
             <p className="text-xs text-foreground/60">
-              &copy; {new Date().getFullYear()} BG3 Guide. Not affiliated with Larian Studios.
+              &copy; {new Date().getFullYear()} БГ3 Гид. Не связано с Larian Studios.
             </p>
           </div>
         </div>

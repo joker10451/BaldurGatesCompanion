@@ -16,19 +16,17 @@ const Header = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex flex-wrap items-center justify-between">
           <div className="flex items-center">
-            <Link href="/">
-              <a className="flex items-center">
-                <div className="mr-4">
-                  {/* Logo */}
-                  <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
-                    <span className="font-accent text-xl text-foreground font-bold">BG3</span>
-                  </div>
+            <Link href="/" className="flex items-center">
+              <div className="mr-4">
+                {/* Logo */}
+                <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center">
+                  <span className="font-accent text-xl text-foreground font-bold">BG3</span>
                 </div>
-                <div>
-                  <h1 className="text-2xl md:text-3xl font-heading font-bold text-gold">BG3 Guide</h1>
-                  <p className="text-sm text-foreground/80">Comprehensive Guides for Baldur's Gate 3</p>
-                </div>
-              </a>
+              </div>
+              <div>
+                <h1 className="text-2xl md:text-3xl font-heading font-bold text-gold">БГ3 Гид</h1>
+                <p className="text-sm text-foreground/80">Подробные руководства по Baldur's Gate 3</p>
+              </div>
             </Link>
           </div>
           
@@ -76,30 +74,20 @@ const Header = () => {
             <SearchBar />
           </div>
           <nav className="flex flex-col space-y-2">
-            <Link href="/categories/classes">
-              <a className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
-                Classes
-              </a>
+            <Link href="/categories/classes" className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
+              Классы
             </Link>
-            <Link href="/categories/companions">
-              <a className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
-                Companions
-              </a>
+            <Link href="/categories/companions" className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
+              Компаньоны
             </Link>
-            <Link href="/categories/quests">
-              <a className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
-                Quests
-              </a>
+            <Link href="/categories/quests" className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
+              Квесты
             </Link>
-            <Link href="/categories/items-equipment">
-              <a className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
-                Items & Equipment
-              </a>
+            <Link href="/categories/items-equipment" className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
+              Предметы и снаряжение
             </Link>
-            <Link href="/categories/mechanics">
-              <a className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
-                Mechanics
-              </a>
+            <Link href="/categories/mechanics" className="px-3 py-2 rounded-md hover:bg-muted transition-colors duration-200">
+              Механики
             </Link>
           </nav>
         </div>

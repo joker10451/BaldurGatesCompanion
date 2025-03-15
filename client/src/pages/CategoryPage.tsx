@@ -25,7 +25,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
     queryKey: ['/api/categories'],
     queryFn: async () => {
       const response = await fetch('/api/categories');
-      if (!response.ok) throw new Error('Failed to fetch categories');
+      if (!response.ok) throw new Error('Не удалось загрузить категории');
       return response.json();
     }
   });
@@ -36,9 +36,9 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
     queryFn: async () => {
       const response = await fetch(`/api/categories/${slug}`);
       if (response.status === 404) {
-        throw new Error('Category not found');
+        throw new Error('Категория не найдена');
       }
-      if (!response.ok) throw new Error('Failed to fetch category');
+      if (!response.ok) throw new Error('Не удалось загрузить категорию');
       return response.json();
     }
   });
@@ -48,7 +48,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
     queryKey: [`/api/guides/category/${category?.id}`],
     queryFn: async () => {
       const response = await fetch(`/api/guides/category/${category.id}`);
-      if (!response.ok) throw new Error('Failed to fetch guides');
+      if (!response.ok) throw new Error('Не удалось загрузить руководства');
       return response.json();
     },
     enabled: !!category?.id,
@@ -59,7 +59,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
     queryKey: [`/api/categories/${category?.id}/subcategories`],
     queryFn: async () => {
       const response = await fetch(`/api/categories/${category.id}/subcategories`);
-      if (!response.ok) throw new Error('Failed to fetch subcategories');
+      if (!response.ok) throw new Error('Не удалось загрузить подкатегории');
       return response.json();
     },
     enabled: !!category?.id && !category?.parentId,
@@ -69,8 +69,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
   useEffect(() => {
     if (categoryError) {
       toast({
-        title: 'Error',
-        description: 'The requested category could not be found.',
+        title: 'Ошибка',
+        description: 'Запрошенная категория не найдена.',
         variant: 'destructive',
       });
       setLocation('/');
@@ -80,7 +80,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
   // Build breadcrumbs
   const { items: breadcrumbs } = category && categories.length > 0
     ? buildCategoryBreadcrumbs(categories, category.id)
-    : { items: [{ name: 'Home', path: '/' }] };
+    : { items: [{ name: 'Главная', path: '/' }] };
 
   const isLoading = isCategoryLoading || isGuidesLoading;
 
@@ -105,8 +105,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
                   {item.isActive ? (
                     <span className="text-foreground/80">{item.name}</span>
                   ) : (
-                    <Link href={item.path}>
-                      <a className="text-gold hover:underline">{item.name}</a>
+                    <Link href={item.path} className="text-gold hover:underline">
+                      {item.name}
                     </Link>
                   )}
                 </li>
@@ -121,7 +121,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="text-foreground/70">Loading category...</p>
+                <p className="text-foreground/70">Загрузка категории...</p>
               </div>
             </div>
           ) : category ? (
@@ -129,7 +129,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
               {/* Category header */}
               <div className="mb-6">
                 <h1 className="font-heading text-3xl md:text-4xl font-bold text-gold mb-2">
-                  {category.name} Guides
+                  Руководства: {category.name}
                 </h1>
                 {category.description && (
                   <p className="text-foreground/80">
@@ -141,16 +141,18 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
               {/* Subcategories */}
               {!category.parentId && subcategories.length > 0 && (
                 <div className="mb-8">
-                  <h2 className="font-heading text-2xl text-gold mb-4">Subcategories</h2>
+                  <h2 className="font-heading text-2xl text-gold mb-4">Подкатегории</h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {subcategories.map((subcategory) => (
-                      <Link key={subcategory.id} href={`/categories/${subcategory.slug}`}>
-                        <a className="fantasy-card p-4 hover:border-gold/50 transition-colors duration-200">
-                          <h3 className="font-heading text-xl font-medium mb-2">{subcategory.name}</h3>
-                          {subcategory.description && (
-                            <p className="text-sm text-foreground/70">{subcategory.description}</p>
-                          )}
-                        </a>
+                      <Link 
+                        key={subcategory.id} 
+                        href={`/categories/${subcategory.slug}`}
+                        className="fantasy-card p-4 hover:border-gold/50 transition-colors duration-200"
+                      >
+                        <h3 className="font-heading text-xl font-medium mb-2">{subcategory.name}</h3>
+                        {subcategory.description && (
+                          <p className="text-sm text-foreground/70">{subcategory.description}</p>
+                        )}
                       </Link>
                     ))}
                   </div>
@@ -160,7 +162,7 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
               {/* Guides for this category */}
               <div className="mb-8">
                 <h2 className="font-heading text-2xl text-gold mb-4">
-                  {category.parentId ? `${category.name} Guides` : 'Guides'}
+                  {category.parentId ? `Руководства: ${category.name}` : 'Руководства'}
                 </h2>
                 {guides.length > 0 ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -174,9 +176,9 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ params }) => {
                   </div>
                 ) : (
                   <div className="text-center py-8 fantasy-card">
-                    <h3 className="font-heading text-xl text-gold mb-2">No Guides Available</h3>
+                    <h3 className="font-heading text-xl text-gold mb-2">Руководства не найдены</h3>
                     <p className="text-foreground/70">
-                      Check back soon for guides in this category.
+                      Загляните позже, чтобы найти руководства в этой категории.
                     </p>
                   </div>
                 )}
