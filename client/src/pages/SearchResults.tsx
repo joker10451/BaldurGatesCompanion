@@ -26,7 +26,7 @@ const SearchResults = () => {
     queryKey: ['/api/categories'],
     queryFn: async () => {
       const response = await fetch('/api/categories');
-      if (!response.ok) throw new Error('Failed to fetch categories');
+      if (!response.ok) throw new Error('Не удалось загрузить категории');
       return response.json();
     }
   });
@@ -37,7 +37,7 @@ const SearchResults = () => {
     queryFn: async () => {
       if (!searchQuery || searchQuery.length < 2) return [];
       const response = await fetch(`/api/guides/search?q=${encodeURIComponent(searchQuery)}`);
-      if (!response.ok) throw new Error('Search failed');
+      if (!response.ok) throw new Error('Ошибка поиска');
       return response.json();
     },
     enabled: searchQuery.length >= 2,
@@ -47,8 +47,8 @@ const SearchResults = () => {
   useEffect(() => {
     if (error) {
       toast({
-        title: 'Search Error',
-        description: 'Failed to perform search. Please try again.',
+        title: 'Ошибка поиска',
+        description: 'Не удалось выполнить поиск. Пожалуйста, попробуйте снова.',
         variant: 'destructive',
       });
     }
@@ -69,15 +69,15 @@ const SearchResults = () => {
         <div className="flex-grow">
           <div className="mb-6">
             <h1 className="font-heading text-3xl md:text-4xl font-bold text-gold mb-2">
-              Search Results
+              Результаты поиска
             </h1>
             {searchQuery ? (
               <p className="text-foreground/80">
-                Showing results for: <span className="text-gold font-medium">"{searchQuery}"</span>
+                Показаны результаты для: <span className="text-gold font-medium">"{searchQuery}"</span>
               </p>
             ) : (
               <p className="text-foreground/80">
-                Enter a search query to find guides.
+                Введите поисковый запрос для поиска руководств.
               </p>
             )}
           </div>
@@ -89,14 +89,14 @@ const SearchResults = () => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="text-foreground/70">Searching...</p>
+                <p className="text-foreground/70">Поиск...</p>
               </div>
             </div>
           ) : searchQuery.length < 2 ? (
             <div className="text-center py-12 fantasy-card">
-              <h3 className="font-heading text-xl text-gold mb-2">Enter at least 2 characters</h3>
+              <h3 className="font-heading text-xl text-gold mb-2">Введите не менее 2 символов</h3>
               <p className="text-foreground/70">
-                Please enter a longer search term to find guides.
+                Пожалуйста, введите более длинный поисковый запрос для поиска руководств.
               </p>
             </div>
           ) : searchResults.length > 0 ? (
@@ -111,9 +111,9 @@ const SearchResults = () => {
             </div>
           ) : (
             <div className="text-center py-12 fantasy-card">
-              <h3 className="font-heading text-xl text-gold mb-2">No Results Found</h3>
+              <h3 className="font-heading text-xl text-gold mb-2">Результатов не найдено</h3>
               <p className="text-foreground/70">
-                No guides found for "{searchQuery}". Try different keywords or browse categories.
+                Не найдено руководств для "{searchQuery}". Попробуйте другие ключевые слова или просмотрите категории.
               </p>
             </div>
           )}
