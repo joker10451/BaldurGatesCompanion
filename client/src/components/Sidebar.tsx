@@ -19,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
     queryKey: ['/api/categories'],
     queryFn: async () => {
       const response = await fetch('/api/categories');
-      if (!response.ok) throw new Error('Failed to fetch categories');
+      if (!response.ok) throw new Error('Не удалось загрузить категории');
       return response.json();
     }
   });
@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
     queryKey: ['/api/recently-viewed', sessionId],
     queryFn: async () => {
       const response = await fetch(`/api/recently-viewed?sessionId=${sessionId}&limit=5`);
-      if (!response.ok) throw new Error('Failed to fetch recently viewed');
+      if (!response.ok) throw new Error('Не удалось загрузить историю просмотров');
       return response.json();
     }
   });
@@ -76,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
       {/* Categories */}
       <div className="fantasy-card">
         <div className="bg-primary px-4 py-3">
-          <h2 className="font-heading font-bold text-xl">Guide Categories</h2>
+          <h2 className="font-heading font-bold text-xl">Категории</h2>
         </div>
         
         <nav className="p-2">
@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Loading categories...
+              Загрузка категорий...
             </div>
           ) : (
             <ul>
@@ -104,38 +104,37 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                       }`}
                       onClick={() => hasSubcategories ? toggleCategory(category.id) : null}
                     >
-                      <Link href={`/categories/${category.slug}`}>
-                        <a className="flex items-center justify-between">
-                          <span className="flex items-center">
-                            {category.icon && (
-                              <img 
-                                src={getCategoryIcon(category.icon)} 
-                                alt={category.name} 
-                                className="w-5 h-5 mr-2"
-                              />
-                            )}
-                            {category.name}
-                          </span>
-                          {hasSubcategories && (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className={`h-4 w-4 transition-transform duration-200 ${
-                                isExpanded ? 'transform rotate-180' : ''
-                              }`}
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M19 9l-7 7-7-7"
-                              />
-                            </svg>
+                      <div className="flex items-center justify-between">
+                        <Link href={`/categories/${category.slug}`} className="flex items-center">
+                          {category.icon && (
+                            <img 
+                              src={getCategoryIcon(category.icon)} 
+                              alt={category.name} 
+                              className="w-5 h-5 mr-2"
+                            />
                           )}
-                        </a>
-                      </Link>
+                          {category.name}
+                        </Link>
+                        {hasSubcategories && (
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`h-4 w-4 transition-transform duration-200 ${
+                              isExpanded ? 'transform rotate-180' : ''
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            onClick={() => toggleCategory(category.id)}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        )}
+                      </div>
                     </div>
                     
                     {hasSubcategories && isExpanded && (
@@ -145,14 +144,15 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                           
                           return (
                             <li key={subcategory.id}>
-                              <Link href={`/categories/${subcategory.slug}`}>
-                                <a className={`py-1 px-2 block rounded transition-colors duration-200 ${
+                              <Link 
+                                href={`/categories/${subcategory.slug}`}
+                                className={`py-1 px-2 block rounded transition-colors duration-200 ${
                                   isSubActive 
                                     ? 'bg-muted/50 text-foreground' 
                                     : 'text-foreground/80 hover:bg-muted/50 hover:text-foreground'
-                                }`}>
-                                  {subcategory.name}
-                                </a>
+                                }`}
+                              >
+                                {subcategory.name}
                               </Link>
                             </li>
                           );
@@ -170,7 +170,7 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
       {/* Recently Viewed */}
       <div className="mt-6 fantasy-card">
         <div className="bg-secondary px-4 py-3">
-          <h2 className="font-heading font-bold text-lg">Recently Viewed</h2>
+          <h2 className="font-heading font-bold text-lg">Недавно просмотренные</h2>
         </div>
         <div className="p-3">
           {isRecentlyViewedLoading ? (
@@ -179,26 +179,27 @@ const Sidebar: React.FC<SidebarProps> = ({ className = '' }) => {
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
-              Loading...
+              Загрузка...
             </div>
           ) : recentlyViewed.length > 0 ? (
             <ul className="space-y-2">
               {recentlyViewed.map((item: RecentlyViewedItem) => (
                 <li key={item.id} className="hover:bg-muted p-2 rounded transition-colors duration-200">
-                  <Link href={`/guides/${item.guide?.slug}`}>
-                    <a className="block text-sm">
-                      <div className="font-medium">{item.guide?.title}</div>
-                      <div className="text-xs text-foreground/60">
-                        {item.categoryName && `${item.categoryName}`}
-                      </div>
-                    </a>
+                  <Link 
+                    href={`/guides/${item.guide?.slug}`}
+                    className="block text-sm"
+                  >
+                    <div className="font-medium">{item.guide?.title}</div>
+                    <div className="text-xs text-foreground/60">
+                      {item.categoryName && `${item.categoryName}`}
+                    </div>
                   </Link>
                 </li>
               ))}
             </ul>
           ) : (
             <div className="p-2 text-center text-foreground/70 text-sm">
-              No recently viewed guides
+              Нет недавно просмотренных руководств
             </div>
           )}
         </div>

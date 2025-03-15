@@ -14,13 +14,13 @@ const GuideCard: React.FC<GuideCardProps> = ({ guide, categoryName }) => {
           />
         ) : (
           <div className="w-full h-full bg-secondary flex items-center justify-center">
-            <span className="text-foreground/30 text-lg font-medium">No Image</span>
+            <span className="text-foreground/30 text-lg font-medium">Нет изображения</span>
           </div>
         )}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-background/90 to-transparent"></div>
         <div className="absolute bottom-0 left-0 p-3">
           <span className="bg-primary text-foreground text-xs px-2 py-1 rounded font-medium">
-            {categoryName || 'Guide'}
+            {categoryName || 'Руководство'}
           </span>
         </div>
       </div>
@@ -31,10 +31,10 @@ const GuideCard: React.FC<GuideCardProps> = ({ guide, categoryName }) => {
         )}
         <div className="flex justify-between items-center text-xs">
           {guide.patch && (
-            <span className="text-foreground/60">Updated for {guide.patch}</span>
+            <span className="text-foreground/60">Обновлено для {guide.patch}</span>
           )}
-          <Link href={`/guides/${guide.slug}`}>
-            <a className="text-gold">Read Guide →</a>
+          <Link href={`/guides/${guide.slug}`} className="text-gold">
+            Читать руководство →
           </Link>
         </div>
       </div>

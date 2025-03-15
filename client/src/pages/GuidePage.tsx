@@ -31,7 +31,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
     queryKey: ['/api/categories'],
     queryFn: async () => {
       const response = await fetch('/api/categories');
-      if (!response.ok) throw new Error('Failed to fetch categories');
+      if (!response.ok) throw new Error('Не удалось загрузить категории');
       return response.json();
     }
   });
@@ -42,9 +42,9 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
     queryFn: async () => {
       const response = await fetch(`/api/guides/${slug}`);
       if (response.status === 404) {
-        throw new Error('Guide not found');
+        throw new Error('Руководство не найдено');
       }
-      if (!response.ok) throw new Error('Failed to fetch guide');
+      if (!response.ok) throw new Error('Не удалось загрузить руководство');
       return response.json();
     }
   });
@@ -54,7 +54,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
     queryKey: [`/api/guides/${guide?.id}/related`],
     queryFn: async () => {
       const response = await fetch(`/api/guides/${guide.id}/related`);
-      if (!response.ok) throw new Error('Failed to fetch related guides');
+      if (!response.ok) throw new Error('Не удалось загрузить похожие руководства');
       return response.json();
     },
     enabled: !!guide?.id,
@@ -66,7 +66,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
       return apiRequest('POST', '/api/recently-viewed', { guideId, sessionId });
     },
     onError: (error) => {
-      console.error('Error adding to recently viewed:', error);
+      console.error('Ошибка при добавлении в недавно просмотренные:', error);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/recently-viewed', sessionId] });
@@ -84,8 +84,8 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
   useEffect(() => {
     if (error) {
       toast({
-        title: 'Error',
-        description: 'The requested guide could not be found.',
+        title: 'Ошибка',
+        description: 'Запрошенное руководство не найдено.',
         variant: 'destructive',
       });
       setLocation('/');
@@ -95,7 +95,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
   // Build breadcrumbs
   const breadcrumbs: BreadcrumbItem[] = guide && categories.length > 0
     ? buildGuideBreadcrumbs(categories, guide.categoryId, guide.title, guide.slug)
-    : [{ name: 'Home', path: '/' }];
+    : [{ name: 'Главная', path: '/' }];
 
   // Enhance related guides with category names
   const relatedGuidesWithCategories: GuideWithCategory[] = 
@@ -125,8 +125,8 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
                   {item.isActive ? (
                     <span className="text-foreground/80">{item.name}</span>
                   ) : (
-                    <Link href={item.path}>
-                      <a className="text-gold hover:underline">{item.name}</a>
+                    <Link href={item.path} className="text-gold hover:underline">
+                      {item.name}
                     </Link>
                   )}
                 </li>
@@ -141,7 +141,7 @@ const GuidePage: React.FC<GuidePageProps> = ({ params }) => {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p className="text-foreground/70">Loading guide...</p>
+                <p className="text-foreground/70">Загрузка руководства...</p>
               </div>
             </div>
           ) : guide ? (
