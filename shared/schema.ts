@@ -45,6 +45,19 @@ export const tips = pgTable("tips", {
   helpfulCount: integer("helpful_count").default(0),
 });
 
+// Game sync data
+export const gameSync = pgTable("game_sync", {
+  id: serial("id").primaryKey(),
+  userId: text("user_id").notNull(),
+  characterName: text("character_name").notNull(),
+  characterClass: text("character_class").notNull(),
+  characterLevel: integer("character_level").notNull(),
+  questProgress: jsonb("quest_progress"),
+  inventory: jsonb("inventory"),
+  abilities: jsonb("abilities"),
+  lastSyncedAt: timestamp("last_synced_at").defaultNow(),
+});
+
 // Insert Schemas
 export const insertCategorySchema = createInsertSchema(categories).omit({
   id: true,
@@ -67,6 +80,11 @@ export const insertTipSchema = createInsertSchema(tips).omit({
   helpfulCount: true,
 });
 
+export const insertGameSyncSchema = createInsertSchema(gameSync).omit({
+  id: true,
+  lastSyncedAt: true,
+});
+
 // Types
 export type Category = typeof categories.$inferSelect;
 export type InsertCategory = z.infer<typeof insertCategorySchema>;
@@ -79,3 +97,6 @@ export type InsertRecentlyViewed = z.infer<typeof insertRecentlyViewedSchema>;
 
 export type Tip = typeof tips.$inferSelect;
 export type InsertTip = z.infer<typeof insertTipSchema>;
+
+export type GameSync = typeof gameSync.$inferSelect;
+export type InsertGameSync = z.infer<typeof insertGameSyncSchema>;

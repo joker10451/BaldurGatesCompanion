@@ -3,14 +3,17 @@ import {
   guides,
   recentlyViewed,
   tips,
+  gameSync,
   type Category,
   type Guide,
   type RecentlyViewed,
   type Tip,
+  type GameSync,
   type InsertCategory,
   type InsertGuide,
   type InsertRecentlyViewed,
-  type InsertTip
+  type InsertTip,
+  type InsertGameSync
 } from "@shared/schema";
 
 export interface IStorage {
@@ -38,6 +41,12 @@ export interface IStorage {
   getTipsByGuide(guideId: number): Promise<Tip[]>;
   createTip(tip: InsertTip): Promise<Tip>;
   incrementHelpful(tipId: number): Promise<Tip | undefined>;
+  
+  // Game Sync
+  getGameSyncByUserId(userId: string): Promise<GameSync | undefined>;
+  createGameSync(gameSync: InsertGameSync): Promise<GameSync>;
+  updateGameSync(id: number, gameSync: Partial<InsertGameSync>): Promise<GameSync | undefined>;
+  deleteGameSync(id: number): Promise<boolean>;
 }
 
 export class MemStorage implements IStorage {
@@ -45,11 +54,13 @@ export class MemStorage implements IStorage {
   private guides: Map<number, Guide>;
   private recentlyViewed: Map<number, RecentlyViewed>;
   private tips: Map<number, Tip>;
+  private gameSync: Map<number, GameSync>;
   
   private categoryIdCounter: number;
   private guideIdCounter: number;
   private recentlyViewedIdCounter: number;
   private tipIdCounter: number;
+  private gameSyncIdCounter: number;
 
   constructor() {
     this.categories = new Map();
