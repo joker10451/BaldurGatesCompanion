@@ -67,14 +67,71 @@ export class MemStorage implements IStorage {
     this.guides = new Map();
     this.recentlyViewed = new Map();
     this.tips = new Map();
+    this.gameSync = new Map();
     
     this.categoryIdCounter = 1;
     this.guideIdCounter = 1;
     this.recentlyViewedIdCounter = 1;
     this.tipIdCounter = 1;
+    this.gameSyncIdCounter = 1;
     
     // Add initial data
     this.seedData();
+  }
+  
+  // Game Sync methods
+  async getGameSyncByUserId(userId: string): Promise<GameSync | undefined> {
+    return Array.from(this.gameSync.values()).find(
+      (sync) => sync.userId === userId
+    );
+  }
+  
+  async createGameSync(gameSyncData: InsertGameSync): Promise<GameSync> {
+    const id = this.gameSyncIdCounter++;
+    const lastSyncedAt = new Date();
+    
+    // Ensure required fields are present with defaults if not provided
+    const newGameSync: GameSync = { 
+      ...gameSyncData, 
+      id, 
+      lastSyncedAt,
+      questProgress: gameSyncData.questProgress ?? null,
+      inventory: gameSyncData.inventory ?? null,
+      abilities: gameSyncData.abilities ?? null
+    };
+    
+    this.gameSync.set(id, newGameSync);
+    return newGameSync;
+  }
+  
+  async updateGameSync(id: number, gameSyncData: Partial<InsertGameSync>): Promise<GameSync | undefined> {
+    const gameSync = this.gameSync.get(id);
+    if (!gameSync) return undefined;
+    
+    const lastSyncedAt = new Date();
+    
+    // Обрабатываем данные синхронизации, сохраняя все обязательные поля
+    const updatedGameSync: GameSync = { 
+      ...gameSync, 
+      ...gameSyncData, 
+      lastSyncedAt,
+      // Убеждаемся, что эти поля никогда не становятся undefined
+      questProgress: gameSyncData.questProgress ?? gameSync.questProgress,
+      inventory: gameSyncData.inventory ?? gameSync.inventory,
+      abilities: gameSyncData.abilities ?? gameSync.abilities
+    };
+    
+    this.gameSync.set(id, updatedGameSync);
+    return updatedGameSync;
+  }
+  
+  async deleteGameSync(id: number): Promise<boolean> {
+    const exists = this.gameSync.has(id);
+    if (exists) {
+      this.gameSync.delete(id);
+      return true;
+    }
+    return false;
   }
 
   // Categories

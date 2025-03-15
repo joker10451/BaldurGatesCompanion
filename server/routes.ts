@@ -5,7 +5,8 @@ import {
   insertCategorySchema, 
   insertGuideSchema, 
   insertRecentlyViewedSchema, 
-  insertTipSchema 
+  insertTipSchema,
+  insertGameSyncSchema
 } from "@shared/schema";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
@@ -254,6 +255,88 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error incrementing helpful count:", error);
       res.status(500).json({ message: "Failed to increment helpful count" });
+    }
+  });
+
+  // Game Sync routes
+  app.get("/api/game-sync/:userId", async (req: Request, res: Response) => {
+    try {
+      const { userId } = req.params;
+      
+      if (!userId) {
+        return res.status(400).json({ message: "User ID is required" });
+      }
+      
+      const gameSync = await storage.getGameSyncByUserId(userId);
+      
+      if (!gameSync) {
+        return res.status(404).json({ message: "Game sync data not found" });
+      }
+      
+      res.json(gameSync);
+    } catch (error) {
+      console.error("Error fetching game sync data:", error);
+      res.status(500).json({ message: "Failed to fetch game sync data" });
+    }
+  });
+  
+  app.post("/api/game-sync", async (req: Request, res: Response) => {
+    try {
+      const result = insertGameSyncSchema.safeParse(req.body);
+      
+      if (!result.success) {
+        const validationError = fromZodError(result.error);
+        return res.status(400).json({ message: validationError.message });
+      }
+      
+      const gameSync = await storage.createGameSync(result.data);
+      res.status(201).json(gameSync);
+    } catch (error) {
+      console.error("Error creating game sync data:", error);
+      res.status(500).json({ message: "Failed to create game sync data" });
+    }
+  });
+  
+  app.put("/api/game-sync/:id", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid game sync ID" });
+      }
+      
+      // We don't validate the full schema here since this is a partial update
+      const gameSync = await storage.updateGameSync(id, req.body);
+      
+      if (!gameSync) {
+        return res.status(404).json({ message: "Game sync data not found" });
+      }
+      
+      res.json(gameSync);
+    } catch (error) {
+      console.error("Error updating game sync data:", error);
+      res.status(500).json({ message: "Failed to update game sync data" });
+    }
+  });
+  
+  app.delete("/api/game-sync/:id", async (req: Request, res: Response) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      if (isNaN(id)) {
+        return res.status(400).json({ message: "Invalid game sync ID" });
+      }
+      
+      const success = await storage.deleteGameSync(id);
+      
+      if (!success) {
+        return res.status(404).json({ message: "Game sync data not found" });
+      }
+      
+      res.status(204).end();
+    } catch (error) {
+      console.error("Error deleting game sync data:", error);
+      res.status(500).json({ message: "Failed to delete game sync data" });
     }
   });
 
