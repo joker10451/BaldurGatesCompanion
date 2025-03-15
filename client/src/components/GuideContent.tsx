@@ -31,12 +31,12 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide, relatedGuides }) => 
   };
   
   const tabs = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'subclasses', label: 'Subclasses' },
-    { id: 'skills', label: 'Skills & Abilities' },
-    { id: 'equipment', label: 'Equipment' },
-    { id: 'builds', label: 'Builds' },
-    { id: 'faq', label: 'FAQ' },
+    { id: 'overview', label: 'Обзор' },
+    { id: 'subclasses', label: 'Подклассы' },
+    { id: 'skills', label: 'Навыки и способности' },
+    { id: 'equipment', label: 'Снаряжение' },
+    { id: 'builds', label: 'Билды' },
+    { id: 'faq', label: 'ЧЗВ' },
   ];
 
   return (
@@ -67,54 +67,54 @@ const GuideContent: React.FC<GuideContentProps> = ({ guide, relatedGuides }) => 
           
           {activeTab === 'subclasses' && (
             <div>
-              <h2 className="font-heading text-gold text-2xl mb-4">Subclasses</h2>
-              <p>Subclass information will be added soon.</p>
+              <h2 className="font-heading text-gold text-2xl mb-4">Подклассы</h2>
+              <p>Информация о подклассах будет добавлена в ближайшее время.</p>
             </div>
           )}
           
           {activeTab === 'skills' && (
             <div>
-              <h2 className="font-heading text-gold text-2xl mb-4">Skills & Abilities</h2>
-              <p>Skills and abilities information will be added soon.</p>
+              <h2 className="font-heading text-gold text-2xl mb-4">Навыки и способности</h2>
+              <p>Информация о навыках и способностях будет добавлена в ближайшее время.</p>
             </div>
           )}
           
           {activeTab === 'equipment' && (
             <div>
-              <h2 className="font-heading text-gold text-2xl mb-4">Equipment</h2>
-              <p>Equipment information will be added soon.</p>
+              <h2 className="font-heading text-gold text-2xl mb-4">Снаряжение</h2>
+              <p>Информация о снаряжении будет добавлена в ближайшее время.</p>
             </div>
           )}
           
           {activeTab === 'builds' && (
             <div>
-              <h2 className="font-heading text-gold text-2xl mb-4">Builds</h2>
-              <p>Build guides will be added soon.</p>
+              <h2 className="font-heading text-gold text-2xl mb-4">Билды</h2>
+              <p>Руководства по билдам будут добавлены в ближайшее время.</p>
             </div>
           )}
           
           {activeTab === 'faq' && (
             <div>
-              <h2 className="font-heading text-gold text-2xl mb-4">Frequently Asked Questions</h2>
-              <p>FAQ information will be added soon.</p>
+              <h2 className="font-heading text-gold text-2xl mb-4">Часто задаваемые вопросы</h2>
+              <p>Информация для ЧЗВ будет добавлена в ближайшее время.</p>
             </div>
           )}
           
           {/* Continue reading section */}
           {relatedGuides && relatedGuides.length > 0 && (
             <div className="border-t border-secondary pt-4 mt-8">
-              <h3 className="font-heading text-xl text-gold mb-4">Continue Reading</h3>
+              <h3 className="font-heading text-xl text-gold mb-4">Читайте также</h3>
               <div className="flex flex-col md:flex-row gap-4">
                 {relatedGuides.slice(0, 2).map((relatedGuide) => (
                   <Link key={relatedGuide.id} href={`/guides/${relatedGuide.slug}`}>
-                    <a className="group flex-1 bg-background border border-secondary rounded-md p-4 transition-colors duration-200 hover:bg-secondary/30">
+                    <div className="group flex-1 bg-background border border-secondary rounded-md p-4 transition-colors duration-200 hover:bg-secondary/30">
                       <div className="font-medium group-hover:text-gold transition-colors duration-200">
                         {relatedGuide.title}
                       </div>
                       <p className="text-sm text-foreground/70">
-                        {relatedGuide.excerpt || 'Check out this related guide'}
+                        {relatedGuide.excerpt || 'Посмотрите похожее руководство'}
                       </p>
-                    </a>
+                    </div>
                   </Link>
                 ))}
               </div>
