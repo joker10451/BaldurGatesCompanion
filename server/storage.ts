@@ -191,134 +191,134 @@ export class MemStorage implements IStorage {
   private seedData() {
     // Main categories
     const classesCategory = this.seedCategory({ 
-      name: "Classes", 
+      name: "Классы", 
       slug: "classes", 
-      description: "Character classes available in Baldur's Gate 3",
+      description: "Игровые классы персонажей в Baldur's Gate 3",
       icon: "sword" 
     });
     
     const companionsCategory = this.seedCategory({ 
-      name: "Companions", 
+      name: "Компаньоны", 
       slug: "companions", 
-      description: "Companions who can join your party in Baldur's Gate 3",
+      description: "Спутники, которые могут присоединиться к вашей группе в Baldur's Gate 3",
       icon: "character" 
     });
     
     const questsCategory = this.seedCategory({ 
-      name: "Quests", 
+      name: "Квесты", 
       slug: "quests", 
-      description: "Main and side quests in Baldur's Gate 3",
+      description: "Основные и второстепенные задания в Baldur's Gate 3",
       icon: "quest" 
     });
     
     const itemsCategory = this.seedCategory({ 
-      name: "Items & Equipment", 
+      name: "Предметы и снаряжение", 
       slug: "items-equipment", 
-      description: "Items, weapons, armor and magical artifacts in Baldur's Gate 3",
+      description: "Предметы, оружие, броня и магические артефакты в Baldur's Gate 3",
       icon: "shield" 
     });
     
     const mechanicsCategory = this.seedCategory({ 
-      name: "Mechanics", 
+      name: "Механики", 
       slug: "mechanics", 
-      description: "Game mechanics and systems in Baldur's Gate 3",
+      description: "Игровые механики и системы в Baldur's Gate 3",
       icon: "spell" 
     });
 
     // Class subcategories
     const fighterCategory = this.seedCategory({ 
-      name: "Fighter", 
+      name: "Воин", 
       slug: "fighter", 
       parentId: classesCategory.id,
-      description: "Guides for the Fighter class in Baldur's Gate 3" 
+      description: "Руководства по классу Воин в Baldur's Gate 3" 
     });
     
     this.seedCategory({ 
-      name: "Wizard", 
+      name: "Волшебник", 
       slug: "wizard", 
       parentId: classesCategory.id,
-      description: "Guides for the Wizard class in Baldur's Gate 3" 
+      description: "Руководства по классу Волшебник в Baldur's Gate 3" 
     });
     
     this.seedCategory({ 
-      name: "Rogue", 
+      name: "Плут", 
       slug: "rogue", 
       parentId: classesCategory.id,
-      description: "Guides for the Rogue class in Baldur's Gate 3" 
+      description: "Руководства по классу Плут в Baldur's Gate 3" 
     });
 
     // Companion subcategories
     this.seedCategory({ 
-      name: "Shadowheart", 
+      name: "Шэдоухарт", 
       slug: "shadowheart", 
       parentId: companionsCategory.id,
-      description: "Guides for the Shadowheart companion in Baldur's Gate 3" 
+      description: "Руководства по спутнику Шэдоухарт в Baldur's Gate 3" 
     });
     
     this.seedCategory({ 
-      name: "Astarion", 
+      name: "Астарион", 
       slug: "astarion", 
       parentId: companionsCategory.id,
-      description: "Guides for the Astarion companion in Baldur's Gate 3" 
+      description: "Руководства по спутнику Астарион в Baldur's Gate 3" 
     });
     
     this.seedCategory({ 
-      name: "Gale", 
+      name: "Гейл", 
       slug: "gale", 
       parentId: companionsCategory.id,
-      description: "Guides for the Gale companion in Baldur's Gate 3" 
+      description: "Руководства по спутнику Гейл в Baldur's Gate 3" 
     });
 
     // Guides
     const fighterGuide = this.seedGuide({
-      title: "Fighter Class Guide",
+      title: "Руководство по классу Воин",
       slug: "fighter-class-guide",
-      excerpt: "Masters of martial combat, fighters are skilled with many weapons and armor types. Whether you prefer the brute force of a greatsword or the precision of a bow, the fighter class offers versatility and power.",
+      excerpt: "Мастера боевых искусств, воины владеют множеством видов оружия и типов брони. Независимо от того, предпочитаете ли вы грубую силу двуручного меча или точность лука, класс воина предлагает универсальность и мощь.",
       content: `
-# Fighter Class Overview
+# Обзор класса Воин
 
-Fighters excel at combat—defeating their enemies through superior weapons and armor. They are skilled in a variety of fighting styles, from two-handed weapons to sword and shield tactics. In Baldur's Gate 3, fighters are strong frontliners who can absorb damage and dish out consistent damage.
+Воины превосходны в бою — побеждая своих врагов благодаря превосходному оружию и броне. Они искусны в различных боевых стилях, от двуручного оружия до тактики меча и щита. В Baldur's Gate 3 воины — сильные фронтлайнеры, которые могут поглощать урон и наносить постоянный урон.
 
-## Fighter Class Stats
+## Характеристики класса Воин
 
-- **Hit Dice**: d10
-- **Primary Ability**: Strength or Dexterity
-- **Saving Throws**: Strength, Constitution
-- **Armor Proficiency**: All armor, shields
-- **Weapon Proficiency**: Simple and martial weapons
-- **Tool Proficiency**: None
+- **Кость здоровья**: d10
+- **Основная характеристика**: Сила или Ловкость
+- **Спасброски**: Сила, Телосложение
+- **Владение доспехами**: Все доспехи, щиты
+- **Владение оружием**: Простое и воинское оружие
+- **Владение инструментами**: Нет
 
-## Key Fighter Features
+## Ключевые особенности Воина
 
-### Fighting Style
-At 1st level, fighters adopt a particular style of fighting. Choose from options like Archery, Defense, Dueling, Great Weapon Fighting, Protection, or Two-Weapon Fighting. Each provides unique benefits.
+### Боевой стиль
+На 1-м уровне воины выбирают определенный стиль боя. Выберите из таких вариантов, как Стрельба, Защита, Дуэлянт, Сражение большим оружием, Защитник или Сражение двумя оружиями. Каждый стиль предоставляет уникальные преимущества.
 
-### Second Wind
-You have a limited well of stamina that you can draw on to protect yourself from harm. As a bonus action, you can regain hit points equal to 1d10 + your fighter level. Once used, you must take a short or long rest before using it again.
+### Второе дыхание
+У вас есть ограниченный запас выносливости, который вы можете использовать для защиты от вреда. Бонусным действием вы можете восстановить очки здоровья, равные 1d10 + ваш уровень воина. После использования вы должны совершить короткий или продолжительный отдых, прежде чем использовать эту способность снова.
 
-### Action Surge
-Starting at 2nd level, you can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action. Once used, you must finish a short or long rest before using it again.
+### Всплеск действий
+Начиная со 2-го уровня, вы можете на мгновение выйти за пределы своих обычных возможностей. В свой ход вы можете совершить одно дополнительное действие. После использования вы должны завершить короткий или продолжительный отдых, прежде чем использовать эту способность снова.
 
-## Recommended Ability Scores
+## Рекомендуемые значения характеристик
 
-- **Strength**: 15-16 (Primary for melee fighters)
-- **Dexterity**: 14-16 (Useful for AC and ranged attacks)
-- **Constitution**: 14-16 (More health and CON saves)
-- **Intelligence**: 8-10 (Important for Eldritch Knight)
-- **Wisdom**: 10-12 (Helps with Perception)
-- **Charisma**: 8-10 (Not essential for fighters)
+- **Сила**: 15-16 (Основная для воинов ближнего боя)
+- **Ловкость**: 14-16 (Полезна для КД и дальних атак)
+- **Телосложение**: 14-16 (Больше здоровья и спасбросков ТЕЛ)
+- **Интеллект**: 8-10 (Важно для Мистического Рыцаря)
+- **Мудрость**: 10-12 (Помогает с Восприятием)
+- **Харизма**: 8-10 (Не существенна для воинов)
 
-## Pro Tips
+## Профессиональные советы
 
-- **Position Wisely**: As a fighter, you'll want to position yourself between enemies and your more vulnerable allies.
-- **Conserve Resources**: Save Action Surge for critical moments when you need burst damage.
-- **Know Your Role**: Depending on your build, you might be the party's tank, damage dealer, or a mix of both.
-- **Tactical Advantage**: Use height and terrain to gain combat advantages when possible.
+- **Разумное позиционирование**: Как воин, вы должны располагаться между врагами и вашими более уязвимыми союзниками.
+- **Сохраняйте ресурсы**: Берегите Всплеск действий для критических моментов, когда вам нужен взрывной урон.
+- **Знайте свою роль**: В зависимости от вашей сборки, вы можете быть танком отряда, наносителем урона или сочетать оба этих качества.
+- **Тактическое преимущество**: Используйте высоту и местность для получения боевых преимуществ, когда это возможно.
       `,
       categoryId: fighterCategory.id,
       featuredImage: "https://images.unsplash.com/photo-1595327656903-2f54e37ce09b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      tags: ["Melee Combat", "Heavy Armor", "Battle Master", "Eldritch Knight", "Champion"],
-      patch: "Patch 5"
+      tags: ["Ближний бой", "Тяжёлая броня", "Мастер боя", "Мистический рыцарь", "Чемпион"],
+      patch: "Патч 5"
     });
 
     this.seedGuide({
@@ -465,13 +465,13 @@ This guide covers the most powerful and effective weapons for Fighters in Baldur
     this.seedTip({
       guideId: fighterGuide.id,
       author: "TavernWanderer",
-      content: "For Battle Masters, the Menacing Attack maneuver is amazing for controlling enemies. The fear effect prevents them from moving closer to you, giving your ranged party members free attacks."
+      content: "Для Мастеров Боя приём Пугающая атака превосходен для контроля противников. Эффект страха не позволяет им приближаться к вам, давая дальнобойным членам группы возможность атаковать свободно."
     });
 
     this.seedTip({
       guideId: fighterGuide.id,
       author: "DungeonMaster42",
-      content: "Don't underestimate the power of high ground! As a Fighter, try to position yourself on elevated terrain whenever possible for that +2 bonus to attack rolls. It makes a huge difference, especially with Action Surge."
+      content: "Не недооценивайте силу высокой позиции! Как Воин, старайтесь располагаться на возвышенной местности, когда это возможно, для получения бонуса +2 к броскам атаки. Это создаёт огромную разницу, особенно при использовании Всплеска действий."
     });
   }
 
